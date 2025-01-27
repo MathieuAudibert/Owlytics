@@ -4,20 +4,19 @@ import requests
 import pandas as pd
 import os
 
-# Script qui recupere la data des games customs de LoL et les insere dans un fichier excel
+# Script qui recupere la data des games en ligne (et bientot customs) de LoL et les insere dans un fichier excel
 
-#RIOT_API_KEY= os.getenv("RIOT_API")
-
-RIOT_API_KEY = "RGAPI-7199ab86-d4ab-4403-bf9e-2cddfe2fa4b5"
-EXCEL_PATH = "matches.xlsx"
-TXT_PATH = "matches.txt"
+RIOT_API_KEY= os.getenv("RIOT_API")
+EXCEL_PATH = "/matches/matches.xlsx"
+TXT_PATH = "/matches/matches.txt"
 
 match_id = input("Entrer l'id de la game : ")
+print("Regions disponibles EUW1, EUN1, NA1, KR, BR1, LA1, LA2, OC1, JP1, TR1, RU (de base EUW1)")
+region = input("Entrer la region : ").strip().upper() or "EUW1"
 
-def fetch_data(match_id):
-    prefix = "EUW1_"
-    id_cmplt = f"{prefix}{match_id}"
-    url = f"https://europe.api.riotgames.com/lol/match/v5/matches/{id_cmplt}"
+def fetch_data(match_id, region):
+    id_cmplt = f"{region}_{match_id}"
+    url = f"https://{region.lower()}.api.riotgames.com/lol/match/v5/matches/{id_cmplt}"
     headers = {"X-Riot-Token": RIOT_API_KEY}
     res = requests.get(url, headers=headers)
 
@@ -68,7 +67,7 @@ if __name__ == "__main__":
     try: 
 
         print("Recuperation des donnees...")
-        match_datares = fetch_data(match_id)
+        match_datares = fetch_data(match_id, region)
         
         df = match_data(match_datares)
 
