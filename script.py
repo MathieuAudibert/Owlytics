@@ -47,13 +47,17 @@ def match_data(data):
     for joueur in data['info']['participants']:
         rows.append({
             "Joueur": joueur['summonerName'],
-            "Champion": joueur['championName'],
-            "Kills": joueur['kills'],
-            "Deaths": joueur['deaths'],
-            "Assists": joueur['assists'],  
-            "Pings": joueur['enemyMissingPings'],
+            #"Pseudo": f"{joueur['riotIdGameName']}#{joueur['riotIdTagLine']}",
             "Win": joueur['win'],
-            "dgt": joueur['totalDamageDealt']
+            "Role"  : joueur['role'],
+            "": "",
+            "Champion": joueur['championName'],
+            "K/D/A": f"{joueur['kills']}/{joueur['deaths']}/{joueur['assists']}",
+            "dgt": joueur['totalDamageDealt'],
+            "": "",
+            "Level": joueur['champLevel'],
+            #"? Pings": joueur['ennemyMissingPings'],
+            "👁️ Pings" : joueur['enemyVisionPings']
         })
     
     return pd.DataFrame(rows)
