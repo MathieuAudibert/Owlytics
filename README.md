@@ -17,4 +17,8 @@ Working on ranked tho !
 3. Create a .env file and write this inside: RIOT_API="RGAPI-YOURRIOTAPI"
 4. Create a folder "matches" and then inside "matches.xlsx" "matches.txt" 
 5. Run the script with `python script.py`
-6. Get the data in either matches/matches.xlsx or matches/matches.txt
+6. You can retrieve your game id by going in the league client > Profile > Match History > The game you want to retrieve data about > Game ID 
+
+   ![img](image-1.png)
+
+7. Get the data in either matches/matches.xlsx or matches/matches.txt
