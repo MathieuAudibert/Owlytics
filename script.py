@@ -6,13 +6,18 @@ import os
 
 # Script qui recupere la data des games customs de LoL et les insere dans un fichier excel
 
-RIOT_API_KEY= os.getenv("RIOT_API")
-EXCEL_PATH= os.getenv("EXCEL_PATH")
+#RIOT_API_KEY= os.getenv("RIOT_API")
+
+RIOT_API_KEY = "RGAPI-7199ab86-d4ab-4403-bf9e-2cddfe2fa4b5"
+EXCEL_PATH = "matches.xlsx"
+TXT_PATH = "matches.txt"
 
 match_id = input("Entrer l'id de la game : ")
 
 def fetch_data(match_id):
-    url = f"https://euw1.api.riotgames.com/lol/matches/v5/matches/{match_id}"
+    prefix = "EUW1_"
+    id_cmplt = f"{prefix}{match_id}"
+    url = f"https://europe.api.riotgames.com/lol/match/v5/matches/{id_cmplt}"
     headers = {"X-Riot-Token": RIOT_API_KEY}
     res = requests.get(url, headers=headers)
 
@@ -32,29 +37,43 @@ def match_data(data):
             "Kills": joueur['kills'],
             "Deaths": joueur['deaths'],
             "Assists": joueur['assists'],  
-            "Pings": joueur['enemyMissingPings'],
+            #"Pings": joueur['enemyMissingPings'],
             "Win": joueur['win'],
-            "kda": joueur['kda'],
             "dgt": joueur['totalDamageDealt']
         })
-        return pd.DataFrame(rows)
-
+    
+    return pd.DataFrame(rows)
+'''
 def save_excel(dataframe, EXCEL_PATH):
     try: 
-        with pd.ExcelWriter(EXCEL_PATH, mode='a', if_sheet_exists='replace') as writer:
-            dataframe.to_excel(writer, index=False, sheet_name="https://github.com/MathieuAudibert/Data-5V5-intso")
-        print(f'Fichier enregistrer avec succes : {EXCEL_PATH}')
+        if not os.path.exists(EXCEL_PATH):
+            with pd.ExcelWriter(EXCEL_PATH, mode='w', engine='openpyxl') as writer:
+                dataframe.to_excel(writer, index=False, sheet_name="Match data")
+        else: 
+            with pd.ExcelWriter(EXCEL_PATH, mode='a', engine='openpyxl') as writer:
+                dataframe.to_excel(writer, index=False, sheet_name="Match data")    
+
     except Exception as e:
         print(f"Erreur lors de l'enregistrement du fichier : {e}")
-    
+''' 
+
+def save_txt(data, TXT_PATH):
+    try:
+        with open(TXT_PATH, 'w', encoding='utf-8') as f:
+            f.write(data)
+    except Exception as e:
+        print(f"Erreur lors de l'enregistrement du fichier : {e}")
+
 if __name__ == "__main__":
     try: 
+
         print("Recuperation des donnees...")
-        match_data = fetch_data(match_id)
+        match_datares = fetch_data(match_id)
         
-        df = match_data(match_data)
+        df = match_data(match_datares)
 
         print("Sauvegarde dans le fichier excel...")
-        save_excel(df, EXCEL_PATH)
+        #save_excel(df, EXCEL_PATH)
+        save_txt(str(df), TXT_PATH)
     except Exception as e:
         print('Erreur : ', e)
