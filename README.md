@@ -1,4 +1,4 @@
-# Fetch custom data
+# Fetch custom data with Owlytics 🦉
 
 Currently not working on customs due to 
 
@@ -12,7 +12,7 @@ Working on ranked tho !
 
 ## Usage 
 
-1. Clone the repo
+1. Clone the repository
 2. Run `pip install requests pandas openpyxl`
 3. Create a .env file and write this inside: RIOT_API="RGAPI-YOURRIOTAPI"
 4. Create a folder "matches" and then inside "matches.xlsx" "matches.txt" 
