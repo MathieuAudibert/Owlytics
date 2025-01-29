@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match Data LoL</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        input, select, button { margin: 10px; padding: 10px; }
+        table { margin: auto; border-collapse: collapse; width: 80%; }
+        th, td { border: 1px solid black; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Match Data LoL</h1>
+    <input type="text" id="match_id" placeholder="Entrer l'ID du match">
+    <select id="region">
+        <option value="EUW1">EUW1</option>
+        <option value="NA1">NA1</option>
+        <option value="KR">KR</option>
+        <!-- Ajoute les autres régions ici -->
+    </select>
+    <button onclick="fetchMatch()">Obtenir les données</button>
+
+    <table id="results">
+        <thead>
+            <tr>
+                <th>Joueur</th>
+                <th>Win</th>
+                <th>Role</th>
+                <th>Champion</th>
+                <th>K/D/A</th>
+                <th>Dégâts</th>
+                <th>Level</th>
+                <th>👁️ Pings</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        function fetchMatch() {
+            const match_id = document.getElementById("match_id").value;
+            const region = document.getElementById("region").value;
+            
+            fetch(`/get_match?match_id=${match_id}&region=${region}`)
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.querySelector("#results tbody");
+                    tableBody.innerHTML = "";
+                    data.forEach(row => {
+                        let tr = document.createElement("tr");
+                        Object.values(row).forEach(value => {
+                            let td = document.createElement("td");
+                            td.textContent = value;
+                            tr.appendChild(td);
+                        });
+                        tableBody.appendChild(tr);
+                    });
+                })
+                .catch(error => console.error("Erreur:", error));
+        }
+    </script>
+</body>
+</html>

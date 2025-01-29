@@ -1,0 +1,6 @@
+flask
+requests
+pandas
+python-dotenv
+openpyxl
+gunicorn

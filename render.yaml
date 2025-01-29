@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: lol-match-tracker
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn -b 0.0.0.0:10000 app:app"
+    envVars:
+      - key: RIOT_API
+        sync: false
+    autoDeploy: true
+    plan: free

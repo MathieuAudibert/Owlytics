@@ -13,7 +13,7 @@ Working on ranked tho !
 ## Usage 
 
 1. Clone the repository
-2. Run `pip install requests pandas openpyxl`
+2. Run `pip install -r requirements.txt`
 3. Create a .env file and write this inside: RIOT_API="RGAPI-YOURRIOTAPI"
 4. Create a folder "matches" and then inside "matches.xlsx" "matches.txt" 
 5. Run the script with `python script.py`

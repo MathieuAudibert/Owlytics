@@ -2,12 +2,15 @@
 
 # Script qui recupere la data des games en ligne (et bientot customs) de LoL et les insere dans un fichier excel
 
+from flask import Flask, request, jsonify, render_template
 import requests
 import pandas as pd
 import os
 from dotenv import load_dotenv
 
+app = Flask(__name__)
 load_dotenv()
+
 RIOT_API_KEY= os.getenv("RIOT_API")
 EXCEL_PATH = "matches/matches.xlsx"
 TXT_PATH = "matches/matches.txt"
@@ -94,5 +97,9 @@ if __name__ == "__main__":
         print("Sauvegarde dans le fichier excel...")
         #save_excel(df, EXCEL_PATH)
         save_txt(df.to_string(index=False), TXT_PATH)
+
+        jsonify(match_data)
+
+        app.run(debug=True)
     except Exception as e:
         print('Erreur : ', e)
