@@ -1,0 +1,7 @@
+-- finir wr participants   
+    -- recuperer l'historique de games de chaque participants et en determiner le wr
+
+-- transformer le tout en script 
+-- calculer toutes informations dans main a partir des fonctions qu'on a deja
+
+--tester le launcher fonctionne
