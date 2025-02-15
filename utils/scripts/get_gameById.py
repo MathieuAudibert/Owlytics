@@ -12,8 +12,8 @@ app = Flask(__name__)
 load_dotenv()
 
 RIOT_API_KEY= os.getenv("RIOT_API")
-EXCEL_PATH = "matches/matches.xlsx"
-TXT_PATH = "matches/matches.txt"
+EXCEL_PATH = "../matches/matches.xlsx"
+TXT_PATH = "../matches/matches.txt"
 REGION_MAPPING = {
     "EUW1": "europe",
     "EUN1": "europe",
