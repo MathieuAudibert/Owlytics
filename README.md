@@ -14,9 +14,9 @@ Working on ranked tho !
 
 1. Clone the repository
 2. Run `pip install -r requirements.txt`
-3. Create a .env file and write this inside: RIOT_API="RGAPI-YOURRIOTAPI"
-4. Create a folder "matches" and then inside "matches.xlsx" "matches.txt" 
-5. Run the script with `python script.py`
+3. Create a .env file and write this inside: RIOT_API="RGAPI-YOURRIOTAPI" (wich you can claim on https://developer.riotgames.com/)
+4. Create a folder "matches" inside `/utils` and then inside "matches.xlsx" "matches.txt" 
+5. Run the launcher (in `/utils`) with `python launcher.py`
 6. You can retrieve your game id by going in the league client > Profile > Match History > The game you want to retrieve data about > Game ID 
 
    ![img](/public/img/image-1.png)
