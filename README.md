@@ -1,10 +1,11 @@
-# Fetch custom data with Owlytics 🦉
+# Fetch riotgames data with Owlytics 🦉
+
+![ff](/public/img/image.png)
 
 Currently not working on customs due to 
 
-![https://riot-api-libraries.readthedocs.io/en/latest/specifics.html#match](/public/img/image.png)
+![https://riot-api-libraries.readthedocs.io/en/latest/specifics.html#match](/public/img/image2.png)
 
-Working on ranked tho !
 
 ## Requirements
 - Python
